@@ -34,4 +34,4 @@ def home():
             print(e)
             data['error'] = "Video not found"
 
-    return render_template('home.html', yt=data, utils=utils)
+    return render_template('home.html', yt=data, utils=utils, url=url)
