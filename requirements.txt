@@ -1,0 +1,13 @@
+click==8.0.1
+colorama==0.4.4
+Flask==2.0.1
+gunicorn==20.1.0
+importlib-metadata==4.8.1
+itsdangerous==2.0.1
+Jinja2==3.0.1
+MarkupSafe==2.0.1
+pytube @ git+https://github.com/pytube/pytube@bb890af3b271a616bbe1d08abc8c65bac9266b0a
+pytube3==9.6.4
+typing-extensions==3.10.0.2
+Werkzeug==2.0.1
+zipp==3.5.0

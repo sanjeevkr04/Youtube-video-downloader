@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Download youtube videos{% endblock title %}
+{% block main_content %}
+<div class="d-flex flex-column align-items-center text-center mt-4">
+  <form class="col-8 col-md-6 mb-5">
+    <div class="my-3">
+        <input type="url" class="form-control" id="url" name="v" placeholder="Youtube video url" required>
+    </div>
+    <button type="submit" class="btn btn-primary px-5">Go</button>
+  </form>
+  {% if yt %}
+    {% if yt.error %}
+      <p class="text-danger bd-highlight fw-bold">{{yt.error}}</p>
+    {% else %}
+      <div class="col-10  col-md-8 col-lg-6">
+        <div class="ratio ratio-16x9">
+          <iframe 
+            src="https://www.youtube.com/embed/PO6nynliE0Q"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <p class="fw-bolder px-2">{{yt.title}}</p>
+      </div>
+
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6 my-3 px-2 text-start">
+        <div class="px-3">
+          <p><b>Channel :</b> {{yt.author}}</p>
+          <p><b>Upload date :</b> {{yt.date.strftime('%d %B %Y')}}</p>
+          <p><b>Length :</b> {{utils.format_time(yt.length)}}</p>
+          <p><b>Rating :</b> {{yt.rating|round(1)}}</p>
+          <p><b>Views :</b> {{yt.views}}</p>
+        </div>
+
+        {% for mime_type in yt.mime_types %}
+          {% if mime_type.streams|length > 0 %}
+            <div class="bg-info">
+              <p class="fw-bold py-2 px-3 m-0">{{mime_type.name}}</p>
+            </div>
+            <table class="table mb-5 table-striped table-hover align-middle">
+              <tbody>
+                {% for stream in mime_type.streams %}
+                  <tr>
+                    <td>{{(stream.resolution or stream.abr)}}</td>
+                    <td class="text-center">{{utils.get_filesize(stream.filesize)}}</td>
+                    <td class="text-end">
+                      <a class="btn btn-success" href="{{stream.url}}">
+                        Download
+                      </a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endif %}
+</div>
+{% endblock main_content %}
