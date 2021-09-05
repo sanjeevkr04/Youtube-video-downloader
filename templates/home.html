@@ -4,7 +4,7 @@
 <div class="d-flex flex-column align-items-center text-center mt-4">
   <form class="col-10 col-sm-8 col-md-6 mb-5">
     <div class="my-3">
-        <input type="url" class="form-control" id="url" name="v" placeholder="Youtube video url" value="{{url}}" required>
+        <input type="url" class="form-control" id="url" name="v" placeholder="Youtube video url" value="{{(url or "")}}" required>
     </div>
     <button type="submit" class="btn btn-primary px-5">Go</button>
   </form>
