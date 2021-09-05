@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{% block title %}Download youtube videos{% endblock title %}
+{% block title %}{{(yt.title or 'Download youtube videos')}}{% endblock title %}
 {% block main_content %}
 <div class="d-flex flex-column align-items-center text-center mt-4">
-  <form class="col-8 col-md-6 mb-5">
+  <form class="col-10 col-sm-8 col-md-6 mb-5">
     <div class="my-3">
         <input type="url" class="form-control" id="url" name="v" placeholder="Youtube video url" required>
     </div>
@@ -15,7 +15,7 @@
       <div class="col-10  col-md-8 col-lg-6">
         <div class="ratio ratio-16x9">
           <iframe 
-            src="https://www.youtube.com/embed/PO6nynliE0Q"
+            src="{{yt.embed}}"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
